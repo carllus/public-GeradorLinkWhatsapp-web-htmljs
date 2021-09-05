@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Gerador de Link para WhatsApp - by CSilvaATI.com</title>
+	<link href="css/css.css" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet"> -->
+	<link rel="stylesheet" href="css/style.min.css">
+	
+	<!-- google ads valida-->
+	<script data-ad-client="ca-pub-4512864999555681" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+	<div id="app" class="box-center">   
+		<aside class="col-half col-half--first">
+			<figure class="flex-default">
+				<img src="img/logo.png" alt="" class="img"/>
+			</figure>
+			<h2 class="tit-principal">Siga os passos:</h2>
+			<ul class="list-number">
+				<li class="list-number__item">Insira o nº do WhatsApp</li>
+				<li class="list-number__item">Escreva uma mensagem padrão para enviarem</li>
+				<li class="list-number__item">Clique em &#8220;gerar link&#8221; e Copie</li>
+			</ul>
+			<h6>
+				<span style="color: #ffffff;">O objetivo da ferramenta é possibilitar uma forma simples de gerar links para receber mensagens de seus futuros clientes e colaboradores. Com o link gerado, basta compartilhar em seu site, redes sociais ou grupos. Ao abrir o link, seu cliente ou colaborador será direcionado para uma nova conversa (para seu número) no aplicativo WhatsApp de qualquer plataforma Móvel ou Desktop (incluindo WhatsWeb).</span>
+			</h6>
+		</aside>
+		<div class="col-half flex-center">
+			<img src="img/logo-whatsapp.png" alt="" class="img img--whatsapp"/>     
+			<h2 class="tit-principal">Gerador de link para Whatsapp</h2>
+			<div class="box-mensagem box-mensagem--error" v-if="mensagemError">
+			{{ mensagemError }}
+			</div>    
+			<form class="form" @submit="event.preventDefault()" v-if="!sucessForm">
+				<div class="form__control">
+					<label for="numero" class="form__label">N° do celular</label>
+					<input type="text" placeholder="(99) 9 9999-9999" class="form__input " id="numero" v-model="numero" @keyup="validaNumero" />
+					<input type="text" class="input-hidden" v-model="robo" />
+				</div>
+				<div class="form__control">
+					<label for="mensagem" class="form__label">Mensagem</label>
+					<input type="text" placeholder="Escreva o texto" class="form__input" id="mensagem" v-model="mensagem"/>
+				</div>
+				<button type="submit" class="form__submit" @click="gerarLink">Gerar Link</button>
+				<small class="tit-obs">Nenhum dado é arquivado no site.</small>
+			</form>
+			<div class="box-mensagem" v-if="sucessForm">
+				<h2><strong>Pronto!</strong> Copie e compartilhe com usuários do Whatsapp!</h2>    
+				<div class="box-input form form--inline">
+					<input type="text" class="form__input form__input--text" v-model="link" />
+					<input type="text" class="input-hidden" v-model="robo" />
+					<button class="form__submit form__input--copy" @click="copiarLink">Copiar Link</button>
+					<!--<button :disabled="encurtado == 1" class="form__submit form__submit--short" @click="ajaxBitly">Encurtar</button>-->
+				</div>
+				<a href="" class="btn-link" @click="gerarNovoLink">Gerar novo link.</a>
+			</div>
+		</div>
+  </div>
+
+	<script src="js/vue.min.js"></script> 
+	<script src="js/axios.min.js"></script>  
+	<script src="js/mask.min.js"></script>
+	<script src="js/main.min.js"></script>
+</body>
+</html>
